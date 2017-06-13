@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Welcome to Jekyll!"
+date:   2017-02-06 21:51:39 +0800
+categories: jekyll update
+---
+####使用pathogen来管理vim插件
+
+1.在terminal或者shell执行以下命令来安装pathogen:
+  `mkdir -p ~/.vim/autoload ~/.vim/bundle && \`
+  `curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim`
+
+2.安装完成后在.vimrc文件中写入如下配置：
+  `execute pathogen#infect()
+  syntax on
+  filetype plugin indent on`
+
+3.安装插件的方式十分简单，将需要安装的插件文件提取到~/.vim/bundle目录下即可，提取插件文件可通过git clone下载，也可以将已下载好的插件包放到该目录下。相对应，想要删除插件只需要删除对应的插件文件。
+
+
+>常用到的插件
+
+  1.powerline: 用来美化底部状态栏
