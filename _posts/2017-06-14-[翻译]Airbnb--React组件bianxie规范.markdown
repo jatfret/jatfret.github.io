@@ -154,7 +154,7 @@ tags: React 翻译
     <MyComponent variant="fancy" />
     ```
 
-### 声明
+## 声明
 
   - 不要使用 `displayName` 来命名组件，可通过引用来命名组件。
 
@@ -170,7 +170,7 @@ tags: React 翻译
     }
     ```
 
-### 对齐方式
+## 对齐方式
 
   - JSX 语法按照这些规则来对齐。eslint: [`react/jsx-closing-bracket-location`](https//github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
 
@@ -197,7 +197,7 @@ tags: React 翻译
     </Foo>
     ```
 
-### 引号
+## 引号
 
   - 对于 JSX 属性总是使用双引号(`""`)，但是对于所有其他的 JS 要使用单引号(`'`)。eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
 
@@ -217,7 +217,7 @@ tags: React 翻译
     <Foo style={ left: '20px'} />
     ```
 
-### 空格
+## 空格
 
   - 总是保留单个空格在自闭合标签的结尾处。eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-tag-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-tag-spacing.md)
 
@@ -245,7 +245,7 @@ tags: React 翻译
     <Foo bar={baz} />
     ```
 
-### Props
+## Props
 
   - prop 的名称总是使用 camelCase
 
