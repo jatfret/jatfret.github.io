@@ -1,12 +1,81 @@
-$ jekyll build
-# => 当前文件夹中的内容将会生成到 ./_site 文件夹中。
+# 本文主要记录使用 jekyll 静态博客生成器生成静态文件，并托管在 github pages 上访问的过程
 
-$ jekyll build --destination <destination>
-# => 当前文件夹中的内容将会生成到目标文件夹<destination>中。
+## 安装
+  jekyll 是用 ruby 编写，所以首先得安装 ruby 环境，安装的过程暂时不再这里说明。成功安装 ruby 环境后执行以下命令：
 
-$ jekyll build --source <source> --destination <destination>
-# => 指定源文件夹<source>中的内容将会生成到目标文件夹<destination>中。
+  ```
+  gem install jekyll bundler
+  jekyll new my-awsome-site
+  cd my-awsome-site
+  bundle install
+  ```
 
-$ jekyll build --watch
-# => 当前文件夹中的内容将会生成到 ./_site 文件夹中，
-#    查看改变，并且自动再生成。
+  - jekyll 内部集成了一个开发用的服务器，可以让用户使用浏览器在本地进行预览。
+
+    ```
+    $ jekyll serve
+      > 开发服务器将会运行在 http://localhost:4000。使用 --detach 配置会使服务器进程在后台运行，如果想关闭服务器，可以使用`kill -9 1234`，如果找不到进程号，可使用`ps aux | grep jekyll`命令来查看，然后再执行 `kill` 命令来关闭服务器。
+    ```
+
+## 目录结构
+
+  jekyll 的核心是一个文本转换引擎。它会将你所编写的 Markdown 文件、Texttile 文件、或者 HTML文件进行转换后，把内容嵌入到一个或者一系列的布局中。其中文本在布局中的样式，url的路径都可以手动的设置。
+
+  一个基本的 jekyll 网站的目录结构一般是这样的：
+
+  .
+  |- _config.yml
+  |- _drafts
+  |   |- test-draft-01.markdown
+  |   |_ test-draft-02.texttile
+  |
+  |- _includes
+  |   |- footer.html
+  |   |_ header.html
+  |
+  |- _layouts
+  |   |- default.html
+  |   |_ post.html
+  |
+  |- _posts
+  |   |- 2017-01-01-test-post-01.markdown
+  |   |_ 2017-01-02-test-post-02.texttile   
+  |
+  |- _site
+  |
+  |- .jekyll-metaData
+  |
+  |_ index.html
+
+  下面是文件或者目录对应的含义：
+
+    | 文件／目录 | 描述 |
+    ---- | --------
+    `_config.yml` | 用来保存配置数据，包括全局配置、命令行配置、变量定义等。
+    `_drafts` | drafts是未发布的文章
+    `_includes` | 可以放入重复利用的文件，通过标签 `"{"% include file.ext %"}"` 来把文件`_includes/file.ext`引入。
+    `_layouts` | 是文章布局的模版。页面布局可以在文章的 `YAML`的头信息中进行选择。 标签 `{{ content }}` 可以将 content 插入到页面中.
+    `_posts` | 这里存放要发布的文章，文件的格式必须符合：`YEAR-MONTH-DAY-title.MARKUP`。永久链接可以在文章中自己定制，但是数据和标记语言都是根据文件名来确定的。
+    `_data` | 格式化好的网站数据应放在这里。jekyll 的引擎会自动加载在该目录下所有的 yaml 文件（后缀是 .yml, .yaml, .json 或者 .csv ）。这些文件可以经由 ｀site.data｀ 访问。如果有一个 members.yml 文件在该目录下，你就可以通过 site.data.members 获取该文件的内容。
+    `_site` | 一旦 Jekyll 完成转换，就会将生成的页面放在这里（默认）。最好将这个目录放进你的 .gitignore 文件中。
+    `jekyll-metadata` | 该文件帮助 Jekyll 跟踪哪些文件从上次建立站点开始到现在没有被修改，哪些文件需要在下一次站点建立时重新生成。该文件不会被包含在生成的站点中。将它加入到你的 .gitignore 文件可能是一个好注意。
+    `index.html and other HTML, Markdown, Textile files` | 如果这些文件中包含 YAML 头信息 部分，Jekyll 就会自动将它们进行转换。当然，其他的如 .html, .markdown, .md, 或者 .textile 等在你的站点根目录下或者不是以上提到的目录中的文件也会被转换。
+    Other Files/Folders | 其他一些未被提及的目录和文件如  css 还有 images 文件夹，  favicon.ico 等文件都将被完全拷贝到生成的 site 中。
+
+
+## 配置
+
+  - jekyll 的配置文件在项目根目录 `_config.yml` 文件中，用户可在文件中写入全局配置和变量定义，写入的变量会在执行时被读取。需要注意的是，在自动构建的过程中，修改 `_config.yml` 文件并不会生效，更新的内容直到下一次启动编译时才会被读取到。
+
+
+## 编译 build
+
+  -  `$ jekyll build`
+      # => 当前文件夹中的内容将会生成到 `./_site` 文件夹中。
+  -  `$ jekyll build --destination <destination>`
+      # => 当前文件夹中的内容将会生成到目标文件夹<destination>中。
+  -   `$ jekyll build --source <source> --destination <destination>`
+      # => 指定源文件夹<source>中的内容将会生成到目标文件夹<destination>中。
+  -   `$ jekyll build --watch`
+      # => 当前文件夹中的内容将会生成到 ./_site 文件夹中，
+      #    查看改变，并且自动再生成。
