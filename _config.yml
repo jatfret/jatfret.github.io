@@ -14,6 +14,11 @@ github_username:  jatfret
 defaults:
   -
     scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
       path: "posts" #一个空字符串代表项目中的所有文件
       type: "posts"
     values:
@@ -27,12 +32,8 @@ defaults:
       layout: "index"
   -
     scope:
-      path: "default"
-    values:
-      layout: "default"
-  -
-    scope:
       path: "/XX/XX"
+      type: "xxx"
     values:
       layout: "xxxxxx"
 
